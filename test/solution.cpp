@@ -43,11 +43,10 @@ TEST_CASE("Validate isBalanced") {
     Node* test = new Node(100);
     test->left = new Node(50);
     test->right = new Node(140);
-    test->left->left = new Node(25);
+    test->left->left= new Node(20);
+    test->right->right= new Node(240);
 
-    CHECK(getMin(test)->key == 25);
-    test->left->left->left = new Node(5);
-    CHECK(getMin(test)->key == 5);
+    REQUIRE(isBalanced(test) == true);
 
     clean(test);
 }
