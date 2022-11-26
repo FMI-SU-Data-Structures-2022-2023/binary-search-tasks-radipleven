@@ -99,6 +99,9 @@ bool areCousins(const Node*, int key1, int key2) {
     return false;
 }
 
-int LCA(const Node*, int key1, int key2) {
-    return -1;
+int LCA(const Node* root, int key1, int key2) {
+    if (!root || root->key == key1 || root->key == key2) return root->key;
+    Node* left; left->key = LCA(root->left, key1, key2);
+    Node* right; right->key = LCA(root->right, key1, key2);
+    return (!left ? right : !right ? left : root)->key;
 }
