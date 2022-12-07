@@ -99,24 +99,34 @@ bool areCousins(const Node*, int key1, int key2) {
     return false;
 }
 
-int LCA(const Node* root, int key1, int key2) {
-     //base case
-     Node* p;p->key=key1;
-     Node* q; q->key=key2;
-        if (root == NULL || root == p || root == q) {
-            return root->key;
-        }
-        Node* left ;left->key= LCA(root->left, p->key, q->key);
-        Node* right ;right->key= LCA(root->right, p->key, q->key);
+int LCA(const Node* tree, int key1, int key2) {
+     if (!tree) return -1;
+    
 
-        //result
-        if(left == NULL) {
-            return right->key;
+    if (key1 > key2) return LCA(tree, key2, key1);    
+    
+
+    if (tree->key == key1) {
+        if (isContains(tree->right, key2)) {
+            return key1;
         }
-        else if(right == NULL) {
-            return left->key;
+        else return -1;
+    }
+
+    if (tree->key == key2) {
+        if (isContains(tree->left, key1)) {
+            return key2;
         }
-        else { //both left and right are not null, we found our result
-            return root->key;
-        }
+        else return -1;
+        
+    }
+
+    if (isContains(tree->left, key1) && isContains(tree->right, key2)) return tree->key;
+
+    if (tree->key < key1 && tree->key < key2) {
+        return LCA(tree->right, key1, key2);
+    }
+    else if (tree->key > key1 && tree->key > key2) return LCA(tree->left, key1, key2);
+
+    return -1;
 }
