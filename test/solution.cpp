@@ -38,6 +38,21 @@ TEST_CASE("Validate getMin") {
     clean(test);
 }
 
+TEST_CASE("Validate isBalanced") {
+
+    Node* test = new Node(100);
+    test->left = new Node(50);
+    test->right = new Node(140);
+    test->left->left= new Node(20);
+    test->right->right= new Node(240);
+    test->right->left= new Node(110);
+    test->left->right= new Node(60);
+
+    CHECK(isBalanced(test) == true);
+
+    clean(test);
+}
+
 TEST_CASE("Validate getMax") {
 
     Node* test = new Node(100);

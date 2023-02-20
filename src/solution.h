@@ -13,6 +13,7 @@ Node* getMax(Node*);
 Node* getMin(Node*);
 Node* remove(Node*, int);
 Node* section(const Node*, const Node*);
+bool isBalanced(Node* tree);
 bool areCousins(const Node*, int, int);
 int LCA(const Node*, int, int);
 #define WEEK7_TREE_H
